@@ -4,3 +4,6 @@ ProjectBoost/Library/
 ProjectBoost/Temp/
 
 ProjectBoost/Logs/
+
+ProjectBoost/obj/Debug/
+ProjectBoost/.vs/
