@@ -24,16 +24,30 @@ public class Rocket : MonoBehaviour
     private void Update()
     {
         ProcessInput();
-        ToggleThrustSFX(Input.GetKey(KeyCode.Space));
     }
 
     private void ProcessInput()
     {
-        if (Input.GetKey(KeyCode.Space))
+        Thrust();
+        Rotate();
+    }
+
+    private void Thrust()
+    {
+        bool isThrusting = Input.GetKey(KeyCode.Space);
+
+        if (isThrusting)
         {
             ToggleThrustSFX(true);
             myRigidBody.AddRelativeForce(Vector3.up * thrust);
         }
+
+        ToggleThrustSFX(isThrusting);
+    }
+
+    private void Rotate()
+    {
+        myRigidBody.freezeRotation = true; // take manual control of the rotation
 
         if (Input.GetKey(KeyCode.A))
         {
@@ -43,6 +57,8 @@ public class Rocket : MonoBehaviour
         {
             transform.Rotate(Vector3.back * rcsThrust);
         }
+
+        myRigidBody.freezeRotation = false; // resume physics control of the rotation
     }
 
     private void ToggleThrustSFX(bool flag)
