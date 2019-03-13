@@ -67,4 +67,26 @@ public class Rocket : MonoBehaviour
     {
         myAudioSource.enabled = flag;
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "Friendly":
+            {
+                Debug.Log("Friendly");
+                break;
+            }
+            default:
+            {
+                Debug.Log("Ouch");
+                break;
+            }
+
+        }
+        if (collision.gameObject.tag != "Friendly")
+        {
+            Debug.Log("Ouch");
+        }
+    }
 }
