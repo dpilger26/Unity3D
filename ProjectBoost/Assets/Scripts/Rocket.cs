@@ -6,8 +6,8 @@ public class Rocket : MonoBehaviour
 {
     // configuration parameters
     [Header("Thrust Parameters")]
-    [SerializeField] float thrust = 5f;
-    [SerializeField] float rcsThrust = 5f;
+    [SerializeField] float thrust = 1000f;
+    [SerializeField] float rcsThrust = 100f;
 
     // cached references
     Rigidbody myRigidBody;
@@ -39,7 +39,7 @@ public class Rocket : MonoBehaviour
         if (isThrusting)
         {
             ToggleThrustSFX(true);
-            myRigidBody.AddRelativeForce(Vector3.up * thrust);
+            myRigidBody.AddRelativeForce(Vector3.up * thrust * Time.deltaTime);
         }
 
         ToggleThrustSFX(isThrusting);
@@ -49,13 +49,15 @@ public class Rocket : MonoBehaviour
     {
         myRigidBody.freezeRotation = true; // take manual control of the rotation
 
+        float rotationThrust = rcsThrust * Time.deltaTime;
+
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Rotate(Vector3.forward * rcsThrust);
+            transform.Rotate(Vector3.forward * rotationThrust);
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            transform.Rotate(Vector3.back * rcsThrust);
+            transform.Rotate(Vector3.back * rotationThrust);
         }
 
         myRigidBody.freezeRotation = false; // resume physics control of the rotation
