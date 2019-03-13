@@ -15,6 +15,9 @@ public class Rocket : MonoBehaviour
 
     LevelLoader levelLoader;
 
+    // state parameters
+    bool isAlive = true;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -27,7 +30,10 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        ProcessInput();
+        if (isAlive)
+        {
+            ProcessInput();
+        }
     }
 
     private void ProcessInput()
@@ -74,6 +80,11 @@ public class Rocket : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        if (!isAlive)
+        {
+            return;
+        }
+
         switch (collision.gameObject.tag)
         {
             case "Friendly":
@@ -83,12 +94,14 @@ public class Rocket : MonoBehaviour
             }
             case "Finish":
             {
+                isAlive = false;
                 Debug.Log("Finish");
                 levelLoader.LoadNextLevel();
                 break;
             }
             default:
             {
+                isAlive = false;
                 Debug.Log("Ouch");
                 levelLoader.ReloadLevel();
                 break;

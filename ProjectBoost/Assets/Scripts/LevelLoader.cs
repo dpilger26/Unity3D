@@ -5,13 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
+    // configuration parameters
+    [SerializeField] float levelLoadDelay = 1f;
+
     public void ReloadLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
     }
 
     public void LoadNextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+    }
+
+    IEnumerator LoadLevel(int buildIndex)
+    {
+        yield return new WaitForSecondsRealtime(levelLoadDelay);
+        SceneManager.LoadScene(buildIndex);
     }
 }
