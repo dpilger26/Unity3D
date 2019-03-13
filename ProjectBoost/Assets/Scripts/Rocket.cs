@@ -13,11 +13,15 @@ public class Rocket : MonoBehaviour
     Rigidbody myRigidBody;
     AudioSource myAudioSource;
 
+    LevelLoader levelLoader;
+
     // Start is called before the first frame update
     private void Start()
     {
         myRigidBody = GetComponent<Rigidbody>();
         myAudioSource = GetComponent<AudioSource>();
+
+        levelLoader = FindObjectOfType<LevelLoader>();
     }
 
     // Update is called once per frame
@@ -77,9 +81,16 @@ public class Rocket : MonoBehaviour
                 Debug.Log("Friendly");
                 break;
             }
+            case "Finish":
+            {
+                Debug.Log("Finish");
+                levelLoader.LoadNextLevel();
+                break;
+            }
             default:
             {
                 Debug.Log("Ouch");
+                levelLoader.ReloadLevel();
                 break;
             }
 
