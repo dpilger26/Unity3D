@@ -15,6 +15,11 @@ public class Rocket : MonoBehaviour
     [SerializeField] AudioClip successClip;
     [SerializeField] [Range(0, 1)] float successClipVolume = 1f;
 
+    [Header("Particle Effects")]
+    [SerializeField] ParticleSystem thrustParticles;
+    [SerializeField] ParticleSystem deathParticles;
+    [SerializeField] ParticleSystem successParticles;
+
     // cached references
     Rigidbody myRigidBody;
     AudioSource myAudioSource;
@@ -31,6 +36,7 @@ public class Rocket : MonoBehaviour
         myAudioSource = GetComponent<AudioSource>();
 
         levelLoader = FindObjectOfType<LevelLoader>();
+        ToggleThrustVFX(false);
     }
 
     // Update is called once per frame
@@ -40,6 +46,11 @@ public class Rocket : MonoBehaviour
         {
             ProcessInput();
         }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        HandleCollision(collision);
     }
 
     private void ProcessInput()
@@ -54,11 +65,10 @@ public class Rocket : MonoBehaviour
 
         if (isThrusting)
         {
-            ToggleThrustSFX(true);
             myRigidBody.AddRelativeForce(Vector3.up * thrust * Time.deltaTime);
         }
 
-        ToggleThrustSFX(isThrusting);
+        ToggleFX(isThrusting);
     }
 
     private void Rotate()
@@ -79,9 +89,27 @@ public class Rocket : MonoBehaviour
         myRigidBody.freezeRotation = false; // resume physics control of the rotation
     }
 
-    private void ToggleThrustSFX(bool flag)
+    private void ToggleThrustSFX(bool isThrusting)
     {
-        myAudioSource.enabled = flag;
+        myAudioSource.enabled = isThrusting;
+    }
+
+    private void ToggleThrustVFX(bool isThrusting)
+    {
+        if (isThrusting)
+        {
+            thrustParticles.Play();
+        }
+        else
+        {
+            thrustParticles.Stop();
+        }
+    }
+
+    private void ToggleFX(bool isThrusting)
+    {
+        ToggleThrustSFX(isThrusting);
+        ToggleThrustVFX(isThrusting);
     }
 
     private void PlayDeathSFX()
@@ -92,11 +120,6 @@ public class Rocket : MonoBehaviour
     private void PlaySuccessSFX()
     {
         AudioSource.PlayClipAtPoint(successClip, Camera.main.transform.position, successClipVolume);
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        HandleCollision(collision);
     }
 
     private void HandleCollision(Collision collision)
@@ -110,7 +133,7 @@ public class Rocket : MonoBehaviour
         {
             case "Friendly":
             {
-                Debug.Log("Friendly");
+                // do nothing right now
                 break;
             }
             case "Finish":
@@ -125,15 +148,12 @@ public class Rocket : MonoBehaviour
             }
 
         }
-        if (collision.gameObject.tag != "Friendly")
-        {
-            Debug.Log("Ouch");
-        }
     }
 
     private void FinishSequence()
     {
         isAlive = false;
+        deathParticles.Play();
         PlaySuccessSFX();
         levelLoader.LoadNextLevel();
     }
@@ -141,6 +161,7 @@ public class Rocket : MonoBehaviour
     private void DeathSequence()
     {
         isAlive = false;
+        successParticles.Play();
         PlayDeathSFX();
         levelLoader.ReloadLevel();
     }
