@@ -254,6 +254,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrust: 2000
   rcsThrust: 250
+  deathClip: {fileID: 8300000, guid: b4f0b24fc06683e4a9823b32d85897e2, type: 3}
+  deathClipVolume: 1
+  successClip: {fileID: 8300000, guid: a1ca34b66a615c9449a593649cedf97a, type: 3}
+  successClipVolume: 1
 --- !u!1 &6355824171980380904
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,7 +407,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2d29a1c02323e9c4f92da12aea1e781f, type: 2}
+  - {fileID: 2100000, guid: 319305efeeaad514cbe24188fe45b6b3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -494,7 +498,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2d29a1c02323e9c4f92da12aea1e781f, type: 2}
+  - {fileID: 2100000, guid: 319305efeeaad514cbe24188fe45b6b3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

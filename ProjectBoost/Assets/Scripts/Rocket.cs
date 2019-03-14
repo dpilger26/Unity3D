@@ -9,6 +9,12 @@ public class Rocket : MonoBehaviour
     [SerializeField] float thrust = 1000f;
     [SerializeField] float rcsThrust = 100f;
 
+    [Header("Audio Parameters")]
+    [SerializeField] AudioClip deathClip;
+    [SerializeField] [Range(0, 1)] float deathClipVolume = 1f;
+    [SerializeField] AudioClip successClip;
+    [SerializeField] [Range(0, 1)] float successClipVolume = 1f;
+
     // cached references
     Rigidbody myRigidBody;
     AudioSource myAudioSource;
@@ -78,7 +84,22 @@ public class Rocket : MonoBehaviour
         myAudioSource.enabled = flag;
     }
 
+    private void PlayDeathSFX()
+    {
+        AudioSource.PlayClipAtPoint(deathClip, Camera.main.transform.position, deathClipVolume);
+    }
+
+    private void PlaySuccessSFX()
+    {
+        AudioSource.PlayClipAtPoint(successClip, Camera.main.transform.position, successClipVolume);
+    }
+
     void OnCollisionEnter(Collision collision)
+    {
+        HandleCollision(collision);
+    }
+
+    private void HandleCollision(Collision collision)
     {
         if (!isAlive)
         {
@@ -94,16 +115,12 @@ public class Rocket : MonoBehaviour
             }
             case "Finish":
             {
-                isAlive = false;
-                Debug.Log("Finish");
-                levelLoader.LoadNextLevel();
+                FinishSequence();
                 break;
             }
             default:
             {
-                isAlive = false;
-                Debug.Log("Ouch");
-                levelLoader.ReloadLevel();
+                DeathSequence();
                 break;
             }
 
@@ -112,5 +129,19 @@ public class Rocket : MonoBehaviour
         {
             Debug.Log("Ouch");
         }
+    }
+
+    private void FinishSequence()
+    {
+        isAlive = false;
+        PlaySuccessSFX();
+        levelLoader.LoadNextLevel();
+    }
+
+    private void DeathSequence()
+    {
+        isAlive = false;
+        PlayDeathSFX();
+        levelLoader.ReloadLevel();
     }
 }
