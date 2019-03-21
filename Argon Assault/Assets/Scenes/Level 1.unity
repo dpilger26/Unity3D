@@ -205,6 +205,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13239e5195405df449d2c4ecb3ac956a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minXOffset: -6.5
+  maxXOffset: 6.5
+  minYOffset: -4
+  maxYOffset: 4
+  xSpeed: 4
+  ySpeed: 4
 --- !u!1 &528842308
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,7 +813,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011334895800, guid: 192b7fe2500f5e0449f21c651bc0474c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4000011334895800, guid: 192b7fe2500f5e0449f21c651bc0474c, type: 3}
       propertyPath: m_LocalPosition.z
