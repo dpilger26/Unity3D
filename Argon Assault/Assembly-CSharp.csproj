@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\LevelLoader.cs" />
     <Compile Include="Assets\Scripts\MusicPlayer.cs" />
+    <Compile Include="Assets\Scripts\Player.cs" />
     <None Include="Assets\epyphany\ReadMe.txt" />
     <Reference Include="Cinemachine">
       <HintPath>C:/Users/pilgeda/Documents/GitHub/Udemy/Unity3D/Argon Assault/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
