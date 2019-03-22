@@ -12,8 +12,8 @@ public class Player : MonoBehaviour
     [SerializeField] [Tooltip("Local coordinates")] float maxXOffset = 5f;
     [SerializeField] [Tooltip("Local coordinates")] float minYOffset = -5f;
     [SerializeField] [Tooltip("Local coordinates")] float maxYOffset = 5f;
-    [SerializeField] [Tooltip("In m/s")] float xSpeed = 10f;
-    [SerializeField] [Tooltip("In m/s")] float ySpeed = 10f;
+    [SerializeField] [Tooltip("In m/s")] float xSpeed = 20f;
+    [SerializeField] [Tooltip("In m/s")] float ySpeed = 20f;
 
     // Update is called once per frame
     private void Update()

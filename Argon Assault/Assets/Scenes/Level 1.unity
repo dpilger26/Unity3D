@@ -209,8 +209,8 @@ MonoBehaviour:
   maxXOffset: 6.5
   minYOffset: -4
   maxYOffset: 4
-  xSpeed: 4
-  ySpeed: 4
+  xSpeed: 20
+  ySpeed: 20
 --- !u!1 &528842308
 GameObject:
   m_ObjectHideFlags: 0
