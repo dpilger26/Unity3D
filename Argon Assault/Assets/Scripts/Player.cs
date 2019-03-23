@@ -8,16 +8,16 @@ public class Player : MonoBehaviour
 {
     // configuration parameters
     [Header("Movement Parameters")]
-    [SerializeField] [Tooltip("Local coordinates")] float minXOffset = -5f;
-    [SerializeField] [Tooltip("Local coordinates")] float maxXOffset = 5f;
+    [SerializeField] [Tooltip("Local coordinates")] float minXOffset = -7.5f;
+    [SerializeField] [Tooltip("Local coordinates")] float maxXOffset = 7.5f;
     [SerializeField] [Tooltip("Local coordinates")] float minYOffset = -5f;
     [SerializeField] [Tooltip("Local coordinates")] float maxYOffset = 5f;
-    [SerializeField] [Tooltip("In m/s")] float xSpeed = 20f;
-    [SerializeField] [Tooltip("In m/s")] float ySpeed = 20f;
+    [SerializeField] [Tooltip("In m/s")] float xSpeed = 12f;
+    [SerializeField] [Tooltip("In m/s")] float ySpeed = 12f;
     [SerializeField] float positionPitchFactor = -3f;
     [SerializeField] float controlPitchFactor = -20f;
-    [SerializeField] float positionYawFactor = 4f;
-    [SerializeField] float controlRollFactor = -20f;
+    [SerializeField] float positionYawFactor = 5f;
+    [SerializeField] float controlRollFactor = -30f;
 
     // state parameters
     float xThrow;
