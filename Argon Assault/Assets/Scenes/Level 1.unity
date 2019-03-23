@@ -913,6 +913,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Music Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8913680894173169810, guid: 532ed00fe5cf83f48adca21f60a6b50d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8913680894173169812, guid: 532ed00fe5cf83f48adca21f60a6b50d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -971,7 +976,7 @@ PrefabInstance:
     - target: {fileID: 8913680894173169813, guid: 532ed00fe5cf83f48adca21f60a6b50d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 532ed00fe5cf83f48adca21f60a6b50d, type: 3}
