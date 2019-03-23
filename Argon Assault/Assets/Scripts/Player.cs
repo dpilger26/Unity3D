@@ -30,6 +30,11 @@ public class Player : MonoBehaviour
         Rotate();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Collided with " + other.name);
+    }
+
     private void Move()
     {
         xThrow = CrossPlatformInputManager.GetAxis("Horizontal");
