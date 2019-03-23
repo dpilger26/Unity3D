@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 4000011334895800}
   - component: {fileID: 33000013403861896}
   - component: {fileID: 23000014158224576}
-  - component: {fileID: 292697875}
   - component: {fileID: 1017654815396295393}
   - component: {fileID: 5353153183128652028}
+  - component: {fileID: 7170921736246624218}
+  - component: {fileID: 6242769739412706524}
   m_Layer: 0
   m_Name: Player Ship
   m_TagString: Untagged
@@ -82,28 +83,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &292697875
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000013772491214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13239e5195405df449d2c4ecb3ac956a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minXOffset: -8
-  maxXOffset: 8
-  minYOffset: -5
-  maxYOffset: 5
-  xSpeed: 12
-  ySpeed: 12
-  positionPitchFactor: -5
-  controlPitchFactor: -20
-  positionYawFactor: 5.5
-  controlRollFactor: -30
 --- !u!64 &1017654815396295393
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -134,6 +113,40 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7170921736246624218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000013772491214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13239e5195405df449d2c4ecb3ac956a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minXOffset: -8
+  maxXOffset: 8
+  minYOffset: -5
+  maxYOffset: 5
+  positionPitchFactor: -5
+  positionYawFactor: 5.5
+  xSpeed: 12
+  ySpeed: 12
+  controlPitchFactor: -20
+  controlRollFactor: -30
+--- !u!114 &6242769739412706524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000013772491214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d48dc865126abd34ea015be7ba173a8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3115459839429384765
 PrefabInstance:
   m_ObjectHideFlags: 0
