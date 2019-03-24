@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     // configuration parameters
+    [SerializeField] Transform parentTransform;
     [SerializeField] GameObject explosionFX;
     [SerializeField] [Tooltip("seconds")] float explosionLifeTime = 2f;
 
@@ -44,7 +45,8 @@ public class Enemy : MonoBehaviour
 
     IEnumerator ExplosionFX()
     {
-        explosion = Instantiate(explosionFX, transform.position, Quaternion.identity) as GameObject;
+        explosion = Instantiate(explosionFX, transform.position,
+            Quaternion.identity, parentTransform) as GameObject;
         yield return new WaitForSecondsRealtime(explosionLifeTime);
         Destroy(explosion);
         Destroy(gameObject);

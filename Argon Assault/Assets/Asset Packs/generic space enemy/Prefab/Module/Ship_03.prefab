@@ -90,6 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07c82415bd5a68c4cb4146300813c4c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentTransform: {fileID: 0}
   explosionFX: {fileID: 1265094205251139021, guid: 8d02901f623ec8945b67e54424e7fda0,
     type: 3}
   explosionLifeTime: 2
