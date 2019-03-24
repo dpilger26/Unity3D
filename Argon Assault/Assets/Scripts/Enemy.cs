@@ -8,18 +8,45 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject explosionFX;
     [SerializeField] [Tooltip("seconds")] float explosionLifeTime = 2f;
 
+    // cached parameters
+    MeshRenderer myMeshRenderer;
+    MeshCollider myMeshCollider;
+
+    // state parameters
+    bool isAlive = true;
+
     // book keeping parameters
     GameObject explosion;
 
+    private void Start()
+    {
+        myMeshRenderer = GetComponent<MeshRenderer>();
+        AddNonTriggerMeshCollider();
+    }
+
+    private void AddNonTriggerMeshCollider()
+    {
+        myMeshCollider = gameObject.AddComponent<MeshCollider>();
+        myMeshCollider.convex = true;
+        myMeshCollider.isTrigger = false;
+    }
+
     private void OnParticleCollision(GameObject other)
     {
-        explosion = Instantiate(explosionFX, transform.position, Quaternion.identity) as GameObject;
-        Destroy(gameObject);
+        if (isAlive)
+        {
+            isAlive = false;
+            myMeshCollider.enabled = false;
+            myMeshRenderer.enabled = false;
+            StartCoroutine(ExplosionFX());
+        }
     }
 
     IEnumerator ExplosionFX()
     {
+        explosion = Instantiate(explosionFX, transform.position, Quaternion.identity) as GameObject;
         yield return new WaitForSecondsRealtime(explosionLifeTime);
         Destroy(explosion);
+        Destroy(gameObject);
     }
 }
