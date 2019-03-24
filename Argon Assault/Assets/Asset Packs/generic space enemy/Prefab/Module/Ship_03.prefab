@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33830965679388596}
   - component: {fileID: 23413581245250402}
   - component: {fileID: 5810724893239450758}
+  - component: {fileID: 11993374392120721}
   m_Layer: 0
   m_Name: Ship_03
   m_TagString: Untagged
@@ -86,9 +87,24 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1074994750746910}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300002, guid: ec2ed6fafcc53c64ba923b9ef7d5749f, type: 3}
+--- !u!114 &11993374392120721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1074994750746910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07c82415bd5a68c4cb4146300813c4c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionFX: {fileID: 1265094205251139021, guid: 8d02901f623ec8945b67e54424e7fda0,
+    type: 3}
+  explosionLifeTime: 2

@@ -23,8 +23,8 @@ public class CollisionHandler : MonoBehaviour
 
     private void StartDeathSequence()
     {
-        SendMessage("OnPlayerDeath");
-        Instantiate(explosionPrefab, transform);
+        Destroy(gameObject);
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         levelLoader.RestartLevel();
     }
 }
