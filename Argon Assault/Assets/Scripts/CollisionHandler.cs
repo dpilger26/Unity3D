@@ -5,15 +5,26 @@ using UnityEngine;
 
 public class CollisionHandler : MonoBehaviour
 {
+    // configuration parameters
+    [SerializeField] GameObject explosionPrefab;
+
+    // cached parameters
+    LevelLoader levelLoader;
+
+    private void Start()
+    {
+        levelLoader = FindObjectOfType<LevelLoader>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collided with " + other.name);
         StartDeathSequence();
     }
 
     private void StartDeathSequence()
     {
-        Debug.Log("Player Dying");
         SendMessage("OnPlayerDeath");
+        Instantiate(explosionPrefab, transform);
+        levelLoader.RestartLevel();
     }
 }
