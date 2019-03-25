@@ -5,10 +5,14 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     // configuration parameters
+    [Header("Score Items")]
+    [SerializeField] int score = 50;
+    [SerializeField] int hitPoints = 5;
+
+    [Header("Misc Items")]
     [SerializeField] Transform parentTransform;
     [SerializeField] GameObject explosionFX;
     [SerializeField] [Tooltip("seconds")] float explosionLifeTime = 2f;
-    [SerializeField] int score;
 
     // cached parameters
     MeshRenderer myMeshRenderer;
@@ -17,6 +21,7 @@ public class Enemy : MonoBehaviour
 
     // state parameters
     bool isAlive = true;
+    int currentHits = 0;
 
     // book keeping parameters
     GameObject explosion;
@@ -40,14 +45,25 @@ public class Enemy : MonoBehaviour
     {
         if (isAlive)
         {
-            isAlive = false;
-            myMeshCollider.enabled = false;
-            myMeshRenderer.enabled = false;
+            ++currentHits;
+            if (currentHits < hitPoints)
+            {
+                return;
+            }
 
-            scoreBoard.AddToScore(score);
-
-            StartCoroutine(ExplosionFX());
+            Kill();
         }
+    }
+
+    private void Kill()
+    {
+        isAlive = false;
+        myMeshCollider.enabled = false;
+        myMeshRenderer.enabled = false;
+
+        scoreBoard.AddToScore(score);
+
+        StartCoroutine(ExplosionFX());
     }
 
     IEnumerator ExplosionFX()

@@ -1247,6 +1247,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bullets Left
       objectReference: {fileID: 0}
+    - target: {fileID: 8225381895054060200, guid: 192b7fe2500f5e0449f21c651bc0474c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8225381895054060205, guid: 192b7fe2500f5e0449f21c651bc0474c,
         type: 3}
       propertyPath: CollisionModule.enabled
@@ -1266,6 +1271,16 @@ PrefabInstance:
         type: 3}
       propertyPath: CollisionModule.maxKillSpeed
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8225381895054060205, guid: 192b7fe2500f5e0449f21c651bc0474c,
+        type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8225381895054060206, guid: 192b7fe2500f5e0449f21c651bc0474c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 753330651, guid: 192b7fe2500f5e0449f21c651bc0474c, type: 3}
       propertyPath: m_Name
@@ -1508,6 +1523,11 @@ PrefabInstance:
       propertyPath: parentTransform
       value: 
       objectReference: {fileID: 69374991}
+    - target: {fileID: 3438821389561998099, guid: 6a7580c2fbbc4fe41947b58d9f7d3f2b,
+        type: 3}
+      propertyPath: hitPoints
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a7580c2fbbc4fe41947b58d9f7d3f2b, type: 3}
 --- !u!1001 &1274247175114395753
