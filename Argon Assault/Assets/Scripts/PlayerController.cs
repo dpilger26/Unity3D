@@ -26,15 +26,27 @@ public class PlayerController : MonoBehaviour
     // state parameters
     float xThrow = 0f;
     float yThrow = 0f;
+    bool isFiring = false;
     bool isControlEnabled = true;
+
+    // constants
+    const string xAxis = "Horizontal";
+    const string yAxis = "Vertical";
+    const string fireButton = "Fire1";
+
+    private void Start()
+    {
+        SetFiring(isFiring);
+    }
 
     // Update is called once per frame
     private void Update()
     {
         if (isControlEnabled)
         {
-            Move();
-            Rotate();
+            ProcessMovement();
+            ProcessRotation();
+            ProcessFiring();
         }
     }
 
@@ -44,10 +56,10 @@ public class PlayerController : MonoBehaviour
         isControlEnabled = false;
     }
 
-    private void Move()
+    private void ProcessMovement()
     {
-        xThrow = CrossPlatformInputManager.GetAxis("Horizontal");
-        yThrow = CrossPlatformInputManager.GetAxis("Vertical");
+        xThrow = CrossPlatformInputManager.GetAxis(xAxis);
+        yThrow = CrossPlatformInputManager.GetAxis(yAxis);
 
         float xOffset = xThrow * xSpeed * Time.deltaTime;
         float yOffset = yThrow * ySpeed * Time.deltaTime;
@@ -58,7 +70,7 @@ public class PlayerController : MonoBehaviour
         transform.localPosition = new Vector3(newXPos, newYPos, transform.localPosition.z);
     }
 
-    private void Rotate()
+    private void ProcessRotation()
     {
         float pitchDueToPosition = transform.localPosition.y * positionPitchFactor;
         float pitchDueToControl = yThrow * controlPitchFactor;
@@ -68,5 +80,28 @@ public class PlayerController : MonoBehaviour
         float roll = xThrow * controlRollFactor;
 
         transform.localRotation = Quaternion.Euler(pitch, yaw, roll);
+    }
+
+    private void ProcessFiring()
+    {
+        bool fireButtonDown = CrossPlatformInputManager.GetButton(fireButton);
+
+        if (!isFiring && fireButtonDown)
+        {
+            SetFiring(true);
+        }
+        else if (isFiring && !fireButtonDown)
+        {
+            SetFiring(false);
+        }
+    }
+
+    private void SetFiring(bool fire)
+    {
+        isFiring = fire;
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(isFiring);
+        }
     }
 }
