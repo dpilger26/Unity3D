@@ -94,3 +94,4 @@ MonoBehaviour:
   explosionFX: {fileID: 1265094205251139021, guid: 8d02901f623ec8945b67e54424e7fda0,
     type: 3}
   explosionLifeTime: 2
+  score: 100

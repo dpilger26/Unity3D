@@ -8,10 +8,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] Transform parentTransform;
     [SerializeField] GameObject explosionFX;
     [SerializeField] [Tooltip("seconds")] float explosionLifeTime = 2f;
+    [SerializeField] int score;
 
     // cached parameters
     MeshRenderer myMeshRenderer;
     MeshCollider myMeshCollider;
+    ScoreBoard scoreBoard;
 
     // state parameters
     bool isAlive = true;
@@ -22,6 +24,8 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         myMeshRenderer = GetComponent<MeshRenderer>();
+        scoreBoard = FindObjectOfType<ScoreBoard>();
+
         AddNonTriggerMeshCollider();
     }
 
@@ -39,6 +43,9 @@ public class Enemy : MonoBehaviour
             isAlive = false;
             myMeshCollider.enabled = false;
             myMeshRenderer.enabled = false;
+
+            scoreBoard.AddToScore(score);
+
             StartCoroutine(ExplosionFX());
         }
     }
