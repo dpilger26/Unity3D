@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float controlPitchFactor = -20f;
     [SerializeField] float controlRollFactor = -30f;
 
+    // cached parameters
+    AudioSource myAudioSource;
+
     // state parameters
     float xThrow = 0f;
     float yThrow = 0f;
@@ -36,6 +39,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        myAudioSource = GetComponent<AudioSource>();
         SetFiring(isFiring);
     }
 
@@ -99,9 +103,17 @@ public class PlayerController : MonoBehaviour
     private void SetFiring(bool fire)
     {
         isFiring = fire;
+        myAudioSource.mute = !isFiring;
+
         foreach (Transform child in transform)
         {
-            child.gameObject.SetActive(isFiring);
+            if (child.tag != "Guns")
+            {
+                continue;
+            }
+
+            var emission = child.GetComponent<ParticleSystem>().emission;
+            emission.enabled = isFiring;
         }
     }
 }

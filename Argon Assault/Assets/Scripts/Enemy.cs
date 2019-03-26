@@ -61,6 +61,12 @@ public class Enemy : MonoBehaviour
         myMeshCollider.enabled = false;
         myMeshRenderer.enabled = false;
 
+        foreach (Transform child in transform)
+        {
+            var emission = child.GetComponent<ParticleSystem>().emission;
+            emission.enabled = false;
+        }
+
         scoreBoard.AddToScore(score);
 
         StartCoroutine(ExplosionFX());
