@@ -34,6 +34,9 @@ public class CubeEditor : MonoBehaviour
         var xPosStr = (transform.position.x / xGridSize).ToString();
         var zPosStr = (transform.position.z / yGridSize).ToString();
 
-        labelTextMesh.text = xPosStr + "," + zPosStr;
+        string labelText = xPosStr + "," + zPosStr;
+
+        labelTextMesh.text = labelText;
+        gameObject.name = "Cube " + labelText;
     }
 }
