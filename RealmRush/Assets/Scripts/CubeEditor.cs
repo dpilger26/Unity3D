@@ -11,17 +11,20 @@ public class CubeEditor : MonoBehaviour
     Waypoint waypoint;
     int gridSize;
     Vector3Int gridPos;
+    PathFinder pathFinder;
 
     private void Awake()
     {
         waypoint = GetComponent<Waypoint>();
         gridSize = waypoint.GetGridSize();
+        pathFinder = FindObjectOfType<PathFinder>();
     }
 
     private void Update()
     {
         SnapToGrid();
         UpdateLabel();
+        UpdateColor();
     }
 
     private void SnapToGrid()
@@ -41,5 +44,21 @@ public class CubeEditor : MonoBehaviour
 
         labelTextMesh.text = labelText;
         gameObject.name = "Cube " + labelText;
+    }
+
+    void UpdateColor()
+    {
+        if (pathFinder.IsStart(waypoint))
+        {
+            waypoint.SetTopColor(Color.green);
+        }
+        else if (pathFinder.IsEnd(waypoint))
+        {
+            waypoint.SetTopColor(Color.red);
+        }
+        else
+        {
+            waypoint.SetTopColor(Color.black);
+        }
     }
 }

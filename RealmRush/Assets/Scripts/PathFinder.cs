@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PathFinder : MonoBehaviour
 {
+    // configuration parameters
+    [SerializeField] Waypoint startWaypoint;
+    [SerializeField] Waypoint endWaypoint;
+
+    // class members
     Dictionary<Vector3Int, Waypoint> grid = new Dictionary<Vector3Int, Waypoint>();
 
     // Start is called before the first frame update
@@ -29,9 +34,13 @@ public class PathFinder : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public bool IsStart(Waypoint waypoint)
     {
-        
+        return waypoint.Equals(startWaypoint);
+    }
+
+    public bool IsEnd(Waypoint waypoint)
+    {
+        return waypoint.Equals(endWaypoint);
     }
 }

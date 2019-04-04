@@ -20,4 +20,10 @@ public class Waypoint : MonoBehaviour
 
         return new Vector3Int(xPos, yPos, zPos);
     }
+
+    public void SetTopColor(Color color)
+    {
+        var top = transform.Find("Top");
+        top.GetComponent<MeshRenderer>().sharedMaterial.color = color;
+    }
 }
