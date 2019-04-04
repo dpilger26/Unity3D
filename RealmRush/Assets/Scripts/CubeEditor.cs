@@ -4,35 +4,38 @@ using UnityEngine;
 
 [ExecuteInEditMode] // makes the script run in the editor mode
 [SelectionBase] // makes it easier to select to object in the editor
+[RequireComponent(typeof(Waypoint))]
 public class CubeEditor : MonoBehaviour
 {
-    [Header("Grid Snapping Parameters")]
-    [SerializeField] [Range(1f, 20f)] float xGridSize = 10f;
-    [SerializeField] [Range(1f, 20f)] float yGridSize = 10f;
-    [SerializeField] [Range(1f, 20f)] float zGridSize = 10f;
+    // cached references
+    Waypoint waypoint;
+    int gridSize;
+    Vector3Int gridPos;
 
-    void Update()
+    private void Awake()
     {
-        SnapPosition();
+        waypoint = GetComponent<Waypoint>();
+        gridSize = waypoint.GetGridSize();
+    }
+
+    private void Update()
+    {
+        SnapToGrid();
         UpdateLabel();
     }
 
-    private void SnapPosition()
+    private void SnapToGrid()
     {
-        Vector3 snapPos;
-        snapPos.x = Mathf.RoundToInt(transform.position.x / xGridSize) * xGridSize;
-        snapPos.y = Mathf.RoundToInt(transform.position.y / xGridSize) * yGridSize;
-        snapPos.z = Mathf.RoundToInt(transform.position.z / xGridSize) * zGridSize;
-
-        transform.position = snapPos;
+        gridPos = waypoint.GetGridPos();
+        transform.position = new Vector3(gridPos.x, 0f, gridPos.z);
     }
 
     private void UpdateLabel()
     {
         var labelTextMesh = GetComponentInChildren<TextMesh>();
 
-        var xPosStr = (transform.position.x / xGridSize).ToString();
-        var zPosStr = (transform.position.z / yGridSize).ToString();
+        var xPosStr = (gridPos.x / gridSize).ToString();
+        var zPosStr = (gridPos.z / gridSize).ToString();
 
         string labelText = xPosStr + "," + zPosStr;
 
